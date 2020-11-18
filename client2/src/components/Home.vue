@@ -9,7 +9,7 @@
   import {getRequest} from "../utils/api";
 
   export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data () {
     return {
       msg: ''

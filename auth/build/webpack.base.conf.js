@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'?'/ssoPage':''
+    publicPath: process.env.NODE_ENV === 'production'?'/authPage':''
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
