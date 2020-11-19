@@ -4,6 +4,7 @@
     <input type="text" v-model="loginForm.username">
     <p>密码：</p>
     <input type="password" v-model="loginForm.password">
+    <p></p>
     <button v-on:click="login">登录</button>
   </div>
 </template>
@@ -36,7 +37,5 @@
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
