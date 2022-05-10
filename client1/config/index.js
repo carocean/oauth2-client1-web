@@ -12,11 +12,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/client1': {
-        target: 'http://client1.com/',
+        target: 'http://localhost:8081',
+        //跨域太重要了，否则重定向回来的地址会使用调用者的地址和端口，因为不跨域axios不按目的域拼而按调用者同一域来拼而后重定向
+        changeOrigin:true,
         pathRewrite: {
-          '^/client1': '/client1'
-        }
-      }
+          '^/client1': ''
+        },
+      },
     },
 
     // Various Dev Server settings

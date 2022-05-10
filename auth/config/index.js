@@ -12,9 +12,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/auth': {
-        target: 'http://oauth.com/',
+        target: 'http://localhost:8080',
+        changeOrigin:true,
         pathRewrite: {
-          '^/auth': '/auth'
+          '^/auth': '/'
         }
       }
     },

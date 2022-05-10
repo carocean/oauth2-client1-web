@@ -1,6 +1,16 @@
 import axios from 'axios'
 
 let base = ''
+axios.interceptors.response.use((response) => {
+  return response;
+}, function (error) {
+  if (302 === error.response.status) {
+    // window.location = '/login';
+    console.log(error.response.headers);
+  } else {
+    return Promise.reject(error);
+  }
+});
 export const postRequest = (url, params) => {
   return axios({
     method: 'post',
@@ -61,7 +71,7 @@ export const deleteRequest = (url) => {
     url: `${base}${url}`
   })
 }
-export const getRequest = (url, params) => {
+export const getRequest = (url, params,headers) => {
   return axios({
     method: 'get',
     data: params,
@@ -72,9 +82,7 @@ export const getRequest = (url, params) => {
       }
       return ret
     }],
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
+    headers: headers,
     url: `${base}${url}`
   })
 }

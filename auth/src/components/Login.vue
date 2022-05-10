@@ -28,9 +28,11 @@
           if (resp.data.code === 0) {
             var pageUrl = window.location.href
             var param = pageUrl.split('?')[1]
+            console.log('------e-----');
             window.location.href = '/auth/oauth/authorize?'+param
           } else {
             console.log('登录失败：'+resp.data.msg)
+            alert('登录失败：'+resp.data.code+' '+resp.data.msg)
           }
         })
       }
