@@ -15,7 +15,8 @@ export default {
   name: 'Home',
   mounted() {
     console.log("----mounted");
-    this.test2();
+    this.tokenMode();
+    this.auth_code();
   },
   data() {
     return {
@@ -46,6 +47,24 @@ export default {
         console.log(reason);
       })
     },
+    tokenMode(){
+      //令牌模式，把传来的令牌记录下来
+      let accessToken=this.$route.hash;
+      if (accessToken == null ||accessToken=='' || typeof accessToken == 'undefined') {
+        return;
+      }
+      accessToken=accessToken.substring(1);
+      let arr=accessToken.split('&');
+      let map={};
+      for(let i=0;i<arr.length;i++){
+        let item=arr[i];
+        let kv=item.split('=');
+        map[kv[0]]=kv[1];
+      }
+      localStorage.setItem("access_token",map.access_token);
+      localStorage.setItem("token_type",map.token_type);
+      localStorage.setItem("expires_in",map.expires_in);
+    },
     test() {
       let url='/client1/test';
       const accessToken = localStorage.getItem("access_token");
@@ -74,8 +93,9 @@ export default {
         console.log(reason);
       });
     },
-    test2() {
+    auth_code() {
 
+      //验证码模式
       let code = this.$route.query.code;
       console.log('------' + code);
       const the=this;
