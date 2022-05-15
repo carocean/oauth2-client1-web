@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite: {
           '^/auth': '/'
         }
+      },
+      '/client1': {
+        target: 'http://localhost:8081',
+        changeOrigin:true,
+        pathRewrite: {
+          '^/client1': '/'
+        }
       }
     },
 

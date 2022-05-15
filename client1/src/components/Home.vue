@@ -16,6 +16,7 @@ export default {
   mounted() {
     console.log("----mounted");
     this.tokenMode();
+    this.smsCode();
     this.auth_code();
   },
   data() {
@@ -47,8 +48,20 @@ export default {
         console.log(reason);
       })
     },
+    smsCode(){
+      //令牌模式，把传来的令牌记录下来，这是简化模式过来的
+      let accessToken=this.$route.query.access_token;
+      if (accessToken == null ||accessToken=='' || typeof accessToken == 'undefined') {
+        return;
+      }
+      localStorage.setItem("access_token",accessToken);
+      localStorage.setItem("refresh_token",this.$route.query.refresh_token);
+      localStorage.setItem("token_type",this.$route.query.token_type);
+      localStorage.setItem("expires_in",this.$route.query.expires_in);
+      localStorage.setItem("scope",this.$route.query.scope);
+    },
     tokenMode(){
-      //令牌模式，把传来的令牌记录下来
+      //令牌模式，把传来的令牌记录下来，这是简化模式过来的
       let accessToken=this.$route.hash;
       if (accessToken == null ||accessToken=='' || typeof accessToken == 'undefined') {
         return;
