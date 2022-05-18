@@ -90,13 +90,13 @@ export default {
         'Content-Type': 'application/x-www-form-urlencoded',
         // 'Authorization':'Bearer '+accessToken,
       }).then(resp => {
-        console.log('---s---' + resp.data.data);
+        console.log(resp.data);
         //alert('----' + resp.data.data);
-        if (resp.data.code === 0) {
+        if (resp.data.code === '2000') {
           this.msg = resp.data.data
-        } else if (resp.data.code === 800) {
+        } else if (resp.data.code === '2004') {
           window.location.href = resp.data.data
-        } else if (resp.data.code === 801) {//token异常：或者是过期了或是非法，总之需要刷新token
+        } else if (resp.data.code === '2030') {//token异常：或者是过期了或是非法，总之需要刷新token
           console.log('刷新token');
           the.refreshToken();
         } else {
